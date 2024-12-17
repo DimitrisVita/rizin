@@ -41,6 +41,7 @@ RZ_API RZ_OWN RzStrBuf *rz_histogram_horizontal(RZ_NONNULL RzHistogramOptions *o
 	ut32 rows = height > 0 ? height : 10;
 	const char *vline = opts->unicode ? RUNE_LINE_VERT : "|";
 	const char *block = opts->unicode ? UTF_BLOCK : "#";
+	const char *ruler = opts->unicode ? "│" : "|";
 	const char *kol[5];
 	kol[0] = opts->pal->call;
 	kol[1] = opts->pal->jmp;
@@ -63,6 +64,7 @@ RZ_API RZ_OWN RzStrBuf *rz_histogram_horizontal(RZ_NONNULL RzHistogramOptions *o
 					rz_strbuf_append(buf, " ");
 				}
 			}
+			rz_strbuf_appendf(buf, " %s%3zu", ruler, (255 - threshold));
 			rz_strbuf_append(buf, "\n");
 		}
 		return buf;
